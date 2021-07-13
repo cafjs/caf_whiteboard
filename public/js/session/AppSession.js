@@ -2,10 +2,17 @@
 
 const cli = require('caf_cli');
 const AppActions = require('../actions/AppActions');
+const urlParser = require('url');
 
 exports.connect = function(ctx) {
     return new Promise((resolve, reject) => {
+        const myURL = urlParser.parse(window.location.href);
+        const userSession = 'session=user' + cli.randomString(8);
+        const oldHash = myURL.hash;
+        myURL.hash = myURL.hash.replace('session=user', userSession);
         const session = new cli.Session(window.location.href);
+
+        session.isUserSession = () => (myURL.hash !== oldHash);
 
         session.onopen = async function() {
             console.log('open session');

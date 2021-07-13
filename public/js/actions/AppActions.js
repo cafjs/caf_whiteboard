@@ -68,7 +68,7 @@ const AppActions = {
     }
 };
 
-const EXTERNAL_METHODS = ['increment', 'getState']; // Add your methods here
+const EXTERNAL_METHODS = ['reset', 'setDark', 'updateElements', 'getState'];
 EXTERNAL_METHODS.forEach(function(x) {
     AppActions[x] = async function() {
         const args = Array.prototype.slice.call(arguments);

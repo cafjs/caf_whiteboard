@@ -38,25 +38,36 @@ class MyApp extends React.Component {
     }
 
     render() {
+        const isUserSession = this.props.ctx && this.props.ctx.session &&
+              this.props.ctx.session.isUserSession();
+
         return cE('div', {className: 'container-fluid'},
-                  cE(DisplayError, {
-                      ctx: this.props.ctx,
-                      error: this.state.error
-                  }),
-                  cE(DisplayURL, {
-                      ctx: this.props.ctx,
-                      invite: this.state.invite
-                  }),
-                  cE(MenuBurger, {
-                      ctx: this.props.ctx,
-                      isClosed: this.state.isClosed,
-                      fullName: this.state.fullName,
-                      dark: this.state.dark
-                  }),
-                  cE(Board, {
-                      ctx: this.props.ctx,
-                      dark: this.state.dark
-                  })
+                  [
+                      cE(DisplayError, {
+                          key: 111,
+                          ctx: this.props.ctx,
+                          error: this.state.error
+                      }),
+                      cE(DisplayURL, {
+                          key: 121,
+                          ctx: this.props.ctx,
+                          invite: this.state.invite
+                      }),
+                      isUserSession ?
+                          cE('div', {key: 131}) :
+                          cE(MenuBurger, {
+                              key: 131,
+                              ctx: this.props.ctx,
+                              isClosed: this.state.isClosed,
+                              fullName: this.state.fullName,
+                              dark: this.state.dark
+                          }),
+                      cE(Board, {
+                          key: 141,
+                          ctx: this.props.ctx,
+                          dark: this.state.dark
+                      })
+                  ]
                  );
     }
 };

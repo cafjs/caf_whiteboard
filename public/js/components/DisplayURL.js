@@ -13,14 +13,13 @@ class DisplayURL extends React.Component {
         this.doDismissURL = this.doDismissURL.bind(this);
         this.doCopyURL = this.doCopyURL.bind(this);
         this.doEmail = this.doEmail.bind(this);
+        this.doStandalone = this.doStandalone(this);
+
         this.state = {};
         if ((typeof window !== "undefined") &&
             window.location && window.location.href) {
             const myURL = urlParser.parse(window.location.href);
-            myURL.pathname = '/user/index.html';
             myURL.hash = myURL.hash.replace('session=default', 'session=user');
-            myURL.hash = myURL.hash.replace('session=standalone',
-                                            'session=user');
             delete myURL.search; // delete cacheKey
             this.state.userURL = urlParser.format(myURL);
         }
@@ -28,6 +27,11 @@ class DisplayURL extends React.Component {
 
     doDismissURL(ev) {
         AppActions.setLocalState(this.props.ctx, {invite: false});
+    }
+
+    doStandalone(ev) {
+        window.open(this.state.userURL);
+        this.doDismissURL();
     }
 
     doEmail(ev) {
@@ -75,6 +79,8 @@ class DisplayURL extends React.Component {
                      cE(rB.ButtonGroup, null,
                         cE(rB.Button, {onClick: this.doCopyURL},
                            'Copy to Clipboard'),
+                        cE(rB.Button, {onClick: this.doStandalone},
+                           'Open Standalone'),
                         cE(rB.Button, {bsStyle: 'danger',
                                        onClick: this.doEmail}, 'Email')
                        )

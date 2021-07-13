@@ -82,7 +82,7 @@ class MenuBurger extends  React.Component  {
     darkLight(event) {
         event.preventDefault();
         this.closeMenu();
-        AppActions.setLocalState(this.props.ctx, {dark: !this.props.dark});
+        AppActions.setDark(this.props.ctx, !this.props.dark);
     }
 
     stateChange(state) {
