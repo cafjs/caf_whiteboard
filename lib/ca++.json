@@ -1,0 +1,16 @@
+{
+    "name" : "ca",
+    "components" : [
+        {
+            "name": "handler",
+            "components" : [
+                {
+                    "name": "props",
+                    "env" : {
+                        "divisor": "process.env.DIVISOR||5"
+                    }
+                }
+            ]
+        }
+    ]
+}

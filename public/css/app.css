@@ -1,0 +1,30 @@
+.board-fit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+
+}
+
+.right-margin {
+    margin-right: 10px;
+}
+
+.menu-heading-item {
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.menu-item {
+    color: #FFFFFF;
+    font-size: 1.15em;
+
+}
