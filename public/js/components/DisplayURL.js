@@ -13,15 +13,14 @@ class DisplayURL extends React.Component {
         this.doDismissURL = this.doDismissURL.bind(this);
         this.doCopyURL = this.doCopyURL.bind(this);
         this.doEmail = this.doEmail.bind(this);
-        this.doStandalone = this.doStandalone(this);
+        this.doStandalone = this.doStandalone.bind(this);
 
-        this.state = {};
         if ((typeof window !== "undefined") &&
             window.location && window.location.href) {
             const myURL = urlParser.parse(window.location.href);
             myURL.hash = myURL.hash.replace('session=default', 'session=user');
             delete myURL.search; // delete cacheKey
-            this.state.userURL = urlParser.format(myURL);
+            this.userURL = urlParser.format(myURL);
         }
     }
 
@@ -30,12 +29,12 @@ class DisplayURL extends React.Component {
     }
 
     doStandalone(ev) {
-        window.open(this.state.userURL);
+        window.open(this.userURL);
         this.doDismissURL();
     }
 
     doEmail(ev) {
-        const body = encodeURIComponent(this.state.userURL);
+        const body = encodeURIComponent(this.userURL);
         const subject = encodeURIComponent('URL for device interaction');
         const mailtoURL = 'mailto:?subject=' + subject + '&body=' + body;
         window.open(mailtoURL);
@@ -43,8 +42,8 @@ class DisplayURL extends React.Component {
     }
 
     doCopyURL(ev) {
-        if (this.state.userURL) {
-            navigator.clipboard.writeText(this.state.userURL)
+        if (this.userURL) {
+            navigator.clipboard.writeText(this.userURL)
                 .then(() => {
                     console.log('Text copied OK to clipboard');
                 })
@@ -70,7 +69,7 @@ class DisplayURL extends React.Component {
                            cE(rB.Col, {sm: 12},
                               cE(rB.FormControl.Static,
                                  {style: {wordWrap: "break-word"}},
-                                 this.state.userURL)
+                                 this.userURL)
                              )
                           )
                        )

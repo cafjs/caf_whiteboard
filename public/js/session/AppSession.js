@@ -10,7 +10,7 @@ exports.connect = function(ctx) {
         const userSession = 'session=user' + cli.randomString(8);
         const oldHash = myURL.hash;
         myURL.hash = myURL.hash.replace('session=user', userSession);
-        const session = new cli.Session(window.location.href);
+        const session = new cli.Session(urlParser.format(myURL));
 
         session.isUserSession = () => (myURL.hash !== oldHash);
 

@@ -65,7 +65,10 @@ class MyApp extends React.Component {
                       cE(Board, {
                           key: 141,
                           ctx: this.props.ctx,
-                          dark: this.state.dark
+                          dark: this.state.dark,
+                          elements: this.state.elements,
+                          epoch: this.state.epoch,
+                          sourceId: this.state.sourceId
                       })
                   ]
                  );

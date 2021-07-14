@@ -20,7 +20,7 @@ const main = exports.main = function(data) {
         return (async function() {
             try {
                 await AppSession.connect(ctx);
-                ReactDOM.render(cE(MyApp, {ctx: ctx}),
+                ReactDOM.render(cE(MyApp, {ctx}),
                                 document.getElementById('content'));
             } catch (err) {
                 document.getElementById('content').innerHTML =

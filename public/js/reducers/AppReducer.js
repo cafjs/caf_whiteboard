@@ -4,7 +4,8 @@ const AppConstants = require('../constants/AppConstants');
 
 const AppReducer = function(state, action) {
     if (typeof state === 'undefined') {
-        return  {counter: -1, dark: true, invite: false, isClosed: false};
+        return  {counter: -1, dark: true, invite: false, isClosed: false,
+                 epoch: 0, elements: [], sourceId: null};
     } else {
         switch(action.type) {
         case AppConstants.APP_UPDATE:
