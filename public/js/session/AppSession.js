@@ -24,7 +24,7 @@ exports.connect = function(ctx) {
         };
 
         session.onmessage = function(msg) {
-            console.log('message:' + JSON.stringify(msg));
+//            console.log('message:' + JSON.stringify(msg));
             AppActions.message(ctx, msg);
         };
 
