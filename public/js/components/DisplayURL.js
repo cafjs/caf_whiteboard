@@ -68,7 +68,8 @@ class DisplayURL extends React.Component {
                         cE(rB.FormGroup, {controlId: 'urlId'},
                            cE(rB.Col, {sm: 12},
                               cE(rB.FormControl.Static,
-                                 {style: {wordWrap: "break-word"}},
+                                 {className: 'url-text',
+                                  style: {wordWrap: "break-word"}},
                                  this.userURL)
                              )
                           )
@@ -79,7 +80,7 @@ class DisplayURL extends React.Component {
                         cE(rB.Button, {onClick: this.doCopyURL},
                            'Copy to Clipboard'),
                         cE(rB.Button, {onClick: this.doStandalone},
-                           'Open Standalone'),
+                           'Open'),
                         cE(rB.Button, {bsStyle: 'danger',
                                        onClick: this.doEmail}, 'Email')
                        )

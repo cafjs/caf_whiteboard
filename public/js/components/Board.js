@@ -5,7 +5,16 @@ const rB = require('react-bootstrap');
 const cE = React.createElement;
 const AppActions = require('../actions/AppActions');
 const InitialData = require('./initialData');
-const Excalidraw = require('@excalidraw/excalidraw').default;
+
+if (typeof window !== 'undefined') {
+    window.EXCALIDRAW_ASSET_PATH = 'assets/';
+}
+// This is a hack to help browserify reduce bundle size (see bin/build.sh)
+const Excalidraw = (process.env.NODE_ENV === "production") ?
+  require('@excalidraw/excalidraw/dist/excalidraw.production.min.js')
+  .default :
+  require('@excalidraw/excalidraw/dist/excalidraw.development.js').default;
+
 const assert = require('assert');
 const cli = require('caf_cli');
 

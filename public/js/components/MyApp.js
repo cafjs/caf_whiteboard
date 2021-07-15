@@ -1,7 +1,6 @@
 'use strict';
 
 const React = require('react');
-const rB = require('react-bootstrap');
 const AppActions = require('../actions/AppActions');
 const DisplayError = require('./DisplayError');
 const Board = require('./Board');
