@@ -13,13 +13,13 @@
         "redux": "^3.7.2",
         "keymirror": "^0.1.0",
         "react-burger-menu": "^3.0.0",
-        "@excalidraw/excalidraw" : "^0.9.0"
+        "@excalidraw/excalidraw" : "^0.9.0",
+        "envify": "^4.1.0"
     },
     "devDependencies": {
         "browserify" : "^17.0.0",
         "nodeunit" : ">=0.9",
-        "uglify-js": "^3.13.10",
-        "envify": "^4.1.0"
+        "uglify-js": "^3.13.10"
     },
     "scripts": {
         "start": "node ./index.js",

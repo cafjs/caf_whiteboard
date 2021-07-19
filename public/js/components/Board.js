@@ -7,7 +7,7 @@ const AppActions = require('../actions/AppActions');
 const InitialData = require('./initialData');
 
 if (typeof window !== 'undefined') {
-    window.EXCALIDRAW_ASSET_PATH = 'assets/';
+    window.EXCALIDRAW_ASSET_PATH = '{{__CDN__}}/assets/';
 }
 // This is a hack to help browserify reduce bundle size (see bin/build.sh)
 const Excalidraw = (process.env.NODE_ENV === "production") ?

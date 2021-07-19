@@ -10,7 +10,13 @@ exports.connect = function(ctx) {
         const userSession = 'session=user' + cli.randomString(8);
         const oldHash = myURL.hash;
         myURL.hash = myURL.hash.replace('session=user', userSession);
-        const session = new cli.Session(urlParser.format(myURL));
+        /* No more than one request in the queue, keep the newest.
+         *
+         * Updates are not deltas, they provide the current state, and
+         * it is safe to drop unprocessed requests.
+         */
+        const session = new cli.Session(urlParser.format(myURL), null,
+                                        {maxQueueLength: 1});
 
         session.isUserSession = () => (myURL.hash !== oldHash);
 

@@ -78,7 +78,12 @@ EXTERNAL_METHODS.forEach(function(x) {
                       .getPromise();
             updateF(ctx.store, data);
         } catch (err) {
-            errorF(ctx.store, err);
+            if (err.maxQueueLength) {
+                // TODO: need to reschedule reset and setDark
+                console.log('.');
+            } else {
+                errorF(ctx.store, err);
+            }
         }
     };
 });
