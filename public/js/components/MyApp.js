@@ -52,15 +52,14 @@ class MyApp extends React.Component {
                           ctx: this.props.ctx,
                           invite: this.state.invite
                       }),
-                      isUserSession ?
-                          cE('div', {key: 131}) :
-                          cE(MenuBurger, {
-                              key: 131,
-                              ctx: this.props.ctx,
-                              isClosed: this.state.isClosed,
-                              fullName: this.state.fullName,
-                              dark: this.state.dark
-                          }),
+                      cE(MenuBurger, {
+                          key: 131,
+                          ctx: this.props.ctx,
+                          isUserSession: isUserSession,
+                          isClosed: this.state.isClosed,
+                          fullName: this.state.fullName,
+                          dark: this.state.dark
+                      }),
                       cE(Board, {
                           key: 141,
                           ctx: this.props.ctx,

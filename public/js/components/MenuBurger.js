@@ -108,14 +108,16 @@ class MenuBurger extends  React.Component  {
                       }), cE('span', null, this.props.fullName)
                         ),
                       cE('hr', {key: 53434}),
-                      cE('a', {
-                          className:  'menu-item',
-                          key: 12114,
-                          onClick: this.invite
-                      },  cE('span', {
-                          className: 'glyphicon glyphicon-envelope text-success'
-                      }), cE('span', null, ' Invite')),
-
+                      this.props.isUserSession ?
+                          cE('div', {key: 131}) :
+                          cE('a', {
+                              className:  'menu-item',
+                              key: 12114,
+                              onClick: this.invite
+                          },  cE('span', {
+                              className: 'glyphicon glyphicon-envelope ' +
+                                  'text-success'
+                          }), cE('span', null, ' Invite')),
                       cE('a', {
                           className:  'menu-item',
                           key: 121424,
