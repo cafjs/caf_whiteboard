@@ -64,6 +64,8 @@ class MenuBurger extends  React.Component  {
          this.stateChange = this.stateChange.bind(this);
          this.invite = this.invite.bind(this);
          this.reset = this.reset.bind(this);
+         this.loadBoard = this.loadBoard.bind(this);
+         this.exportBoard = this.exportBoard.bind(this);
          this.darkLight = this.darkLight.bind(this);
      }
 
@@ -92,6 +94,19 @@ class MenuBurger extends  React.Component  {
     closeMenu () {
         this.setState({menuOpen: false});
     }
+
+    exportBoard (event) {
+        event.preventDefault();
+        this.closeMenu();
+        AppActions.setLocalState(this.props.ctx, {exportBoard: true});
+    }
+
+    loadBoard (event) {
+        event.preventDefault();
+        this.closeMenu();
+        AppActions.setLocalState(this.props.ctx, {loadBoard: true});
+    }
+
 
     render() {
         return cE(rbm.slide, {styles: styles, right: true,
@@ -129,11 +144,30 @@ class MenuBurger extends  React.Component  {
 
                       cE('a', {
                           className:  'menu-item',
-                           key: 3312114,
+                          key: 3312114,
                           onClick: this.reset
                       },  cE('span', {
                           className: 'glyphicon  glyphicon-trash text-danger'
                       }), cE('span', null, ' Reset')),
+
+                      cE('a', {
+                          className:  'menu-item',
+                          key: 5312114,
+                          onClick: this.loadBoard
+                      },  cE('span', {
+                          className: 'glyphicon glyphicon-cloud-upload' +
+                              ' text-danger'
+                      }), cE('span', null, ' Load')),
+
+                      cE('a', {
+                          className:  'menu-item',
+                           key: 6312114,
+                          onClick: this.exportBoard
+                      },  cE('span', {
+                          className: 'glyphicon  glyphicon-save' +
+                              ' text-success'
+                      }), cE('span', null, ' Export')),
+
 
                       cE('hr', {key: 43434})
                   ]

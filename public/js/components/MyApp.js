@@ -6,6 +6,8 @@ const DisplayError = require('./DisplayError');
 const Board = require('./Board');
 const MenuBurger = require('./MenuBurger');
 const DisplayURL = require('./DisplayURL');
+const LoadBoard = require('./LoadBoard');
+const ExportBoard = require('./ExportBoard');
 
 const cE = React.createElement;
 
@@ -59,6 +61,17 @@ class MyApp extends React.Component {
                           isClosed: this.state.isClosed,
                           fullName: this.state.fullName,
                           dark: this.state.dark
+                      }),
+                      cE(LoadBoard, {
+                          key: 19941,
+                          ctx: this.props.ctx,
+                          loadBoard: this.state.loadBoard
+                      }),
+                      cE(ExportBoard, {
+                          key: 29941,
+                          ctx: this.props.ctx,
+                          exportBoard: this.state.exportBoard
+
                       }),
                       cE(Board, {
                           key: 141,
