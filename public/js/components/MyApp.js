@@ -70,6 +70,7 @@ class MyApp extends React.Component {
                       cE(ExportBoard, {
                           key: 29941,
                           ctx: this.props.ctx,
+                          elements: this.state.elements,
                           exportBoard: this.state.exportBoard
 
                       }),

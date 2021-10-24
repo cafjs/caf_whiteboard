@@ -15,6 +15,8 @@ class LoadBoard extends React.Component {
         this.doLoadFile = this.doLoadFile.bind(this);
         this.doUpdate = this.doUpdate.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleFileSelect = this.handleFileSelect.bind(this);
+        this.inputRef = React.createRef();
         this.state = {
             contents: ''
         };
@@ -29,7 +31,9 @@ class LoadBoard extends React.Component {
     }
 
     doLoadFile(ev) {
-
+        if (this.inputRef.current) {
+            this.inputRef.current.click();
+        }
     }
 
     doUpdate(ev) {
@@ -52,6 +56,16 @@ class LoadBoard extends React.Component {
         this.setState({contents: ev.target.value});
     }
 
+    handleFileSelect(ev) {
+        if (ev.target.files && (ev.target.files.length > 0)) {
+            const reader = new window.FileReader();
+            reader.onload = (e) => {
+                this.setState({contents: e.target.result});
+            };
+            reader.readAsText(ev.target.files[0]);
+        }
+    }
+
     render() {
         return cE(rB.Modal, {show: !!this.props.loadBoard,
                              onHide: this.doDismiss,
@@ -60,7 +74,7 @@ class LoadBoard extends React.Component {
                       className: 'bg-primary text-primary',
                       style: {textAlign: 'center'},
                       closeButton: true},
-                     cE(rB.Modal.Title, null, 'Load Content')
+                     cE(rB.Modal.Title, null, 'Load JSON Content')
                     ),
                   cE(rB.ModalBody, null,
                      cE(rB.Form, {horizontal: true},
@@ -69,6 +83,8 @@ class LoadBoard extends React.Component {
                               cE(rB.FormControl,
                                  {componentClass: 'textarea',
                                   rows: 9,
+                                  placeholder: '<Paste JSON here or upload' +
+                                  ' file, then click Update>',
                                   spellcheck: 'false',
                                   value: this.state.contents,
                                   onChange: this.handleChange
@@ -77,6 +93,15 @@ class LoadBoard extends React.Component {
                           )
                        )
                     ),
+                  cE('input', {
+                      ref: this.inputRef,
+                      type: 'file',
+                      accept: 'application/json',
+                      onChange: this.handleFileSelect,
+                      style: {
+                          display: 'none'
+                      }
+                  }),
                   cE(rB.Modal.Footer, null,
                      cE(rB.ButtonGroup, null,
                         cE(rB.Button, {bsStyle: 'primary',
@@ -85,8 +110,9 @@ class LoadBoard extends React.Component {
                         cE(rB.Button, {bsStyle: 'danger',
                                        onClick: this.doReset}, 'Reset'),
                         cE(rB.Button, {onClick: this.doLoadFile},
-                           'Load File'),
+                           'Upload'),
                         cE(rB.Button, {bsStyle: 'danger',
+                                       disabled: !this.state.contents,
                                        onClick: this.doUpdate}, 'Update')
                        )
                     )
